@@ -1,0 +1,36 @@
+[
+    {
+      "id": 1,
+      "cover": "https://i.ibb.co/5kTV6Fb/Rectangle-26.png",
+      "title": "Light Bright Airy Stylish Apt & Safe",
+      "total_cost": 1500,
+      "flat-facilities": ["Private Beach Access", "Infinity Pool", "Spa"],
+      "kitchen-facilities": ["Full Kitchen", "Room Service"],
+      "cancelation-availability": true,
+      "rating": 4.9,
+      "price_per_night": 250
+    },
+    {
+      "id": 2,
+      "cover": "https://i.ibb.co/gZ2VR7C/Rectangle-27.png",
+      "title": "Peaceful Stay, Apartment in Lost Panorama",
+      "total_cost": 800,
+      "flat-facilities": ["Scenic Balcony", "Hiking Trails", "Cozy Fireplace"],
+      "kitchen-facilities": ["Kitchenette", "Dining Area"],
+      "cancelation-availability": false,
+      "rating": 4.2,
+      "price_per_night": 160
+    },
+    {
+      "id": 3,
+      "cover": "https://i.ibb.co/DpLJyf8/Rectangle-28.png",
+      "title": "AR Lounge & Pool (R&R + B&B)",
+      "total_cost": 1200,
+      "flat-facilities": ["Free Wi-Fi", "Rooftop Bar", "Fitness Center"],
+      "kitchen-facilities": ["Coffee Maker", "Mini Fridge"],
+      "cancelation-availability": true,
+      "rating": 4.6,
+      "price_per_night": 200
+    }
+  ]
+  

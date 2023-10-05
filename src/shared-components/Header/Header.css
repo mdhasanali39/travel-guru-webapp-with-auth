@@ -1,0 +1,7 @@
+.overlay{
+    background-image: linear-gradient( rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)), url('../../assets/coxs_bazar.png');
+    mix-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
