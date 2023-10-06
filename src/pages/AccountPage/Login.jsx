@@ -5,8 +5,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
-  const {signIn} = useContext(AuthContext)
+  const {signIn, facebookLogin} = useContext(AuthContext)
   const navigate = useNavigate();
+
   const loc = useLocation()
   console.log(loc);
 
@@ -33,6 +34,17 @@ const Login = () => {
 
     console.log(email, password);
   }
+
+  const handleFbLogin = () =>{
+    facebookLogin()
+    .then((result) => {
+      console.log(result.user);
+      navigate(loc.pathname ? loc.state : '/')
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
 
   return (
     <div className="flex justify-center items-center min-h-[65vh]">
@@ -89,7 +101,9 @@ const Login = () => {
         {/* social login  */}
         <div className="space-y-3">
           {/* facebook */}
-          <div className="flex items-center w-full cursor-pointer text-center border pl-2 py-2 rounded-[55px]">
+          <div 
+          onClick={handleFbLogin}
+           className="flex items-center w-full cursor-pointer text-center border pl-2 py-2 rounded-[55px]">
             <img className="w-9 h-9 " src={facebookbIcon} alt="facebook icon" />
             <p className="font-medium flex-1">Continue with Facebook</p>
           </div>

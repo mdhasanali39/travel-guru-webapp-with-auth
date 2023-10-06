@@ -1,17 +1,27 @@
 import { createContext, useEffect, useState } from "react";
 import {
+  FacebookAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import auth from "../firbase/firbaseConfig";
 
 export const AuthContext = createContext(null);
 
+const fbProvider = new FacebookAuthProvider();
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
+
+
+  // login with facebook 
+  const facebookLogin = () =>{
+    return signInWithPopup(auth, fbProvider)
+  }
 
   // create user with email and password
   const signUp = (email, password) => {
@@ -50,6 +60,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     loader,
+    facebookLogin,
   };
 
   return (
