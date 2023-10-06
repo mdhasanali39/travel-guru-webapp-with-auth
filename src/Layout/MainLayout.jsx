@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Home from "../pages/Home/Home";
 import Header from "../shared-components/Header/Header";
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
   return (
@@ -9,6 +9,7 @@ const MainLayout = () => {
       <div className="max-w-[1300px] mx-auto px-5">
         <Outlet></Outlet>
       </div>
+      <Toaster/>
     </div>
   );
 };

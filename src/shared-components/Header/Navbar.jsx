@@ -1,9 +1,21 @@
+import { useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
 
   const location = useLocation();
+  const {user, logOut} = useContext(AuthContext)
 
+  const handleLogOut = () =>{
+    logOut()
+    .then(() => {
+      toast.success('Log out Successful!')
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
 
   return (
     <nav className="">
@@ -58,7 +70,17 @@ const Navbar = () => {
             Contact
           </NavLink>
         </li>
-        <li>
+        <li className="font-medium">
+          <NavLink
+            to="/profile"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "text-[#F9A51A] underline" : ""
+            }
+          >
+            Profile
+          </NavLink>
+        </li>
+        {!user ? <li>
             <Link 
              to={'/login'}
             type="button"
@@ -68,7 +90,16 @@ const Navbar = () => {
              >
                 Login
             </Link>
-        </li>
+        </li> : <li>
+            <button 
+            onClick={handleLogOut}
+             className="font-medium px-4 py-3
+             text-white
+              bg-[#F9A51A] rounded-md"
+             >
+                LogOut
+            </button>
+        </li>} 
       </ul>
     </nav>
   );

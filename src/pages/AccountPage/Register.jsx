@@ -1,15 +1,46 @@
 import { Link } from "react-router-dom";
 import facebookbIcon from "../../assets/icons/fb.png";
 import GoogleIcon from "../../assets/icons/google.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+
+  const {signUp} = useContext(AuthContext);
+
+  const handleFormSubmit = (e) =>{
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const form = new FormData(e.currentTarget)
+    const name = form.get('name')
+    const email = form.get('email')
+    const password = form.get('password');
+
+    signUp(email, password)
+    .then((result) => {
+      console.log(result.user);
+      updateProfile(result.user, {
+        displayName: name, photoURL: "https://example.com/jane-q-user/profile.jpg"
+      })
+      .then(() => console.log('Profile Updated!'))
+      .catch((err => console.log(err)))
+    }).catch((err) => {
+      console.error(err);
+    });
+
+    console.log(name, email, password);
+  }
+
   return (
     <div className="flex justify-center items-center min-h-[65vh]">
       <div className="border rounded-md w-1/3 p-5">
         <h2 className="text-2xl font-semibold text-center mt-0 mb-5">
           Please Register
         </h2>
-        <form className="flex gap-6 flex-col">
+        <form 
+        onSubmit={handleFormSubmit}
+        className="flex gap-6 flex-col">
           <input
             type="text"
             name="name"
