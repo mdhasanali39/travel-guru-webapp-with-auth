@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
-  const {signIn, facebookLogin} = useContext(AuthContext)
+  const {signIn, facebookLogin, googleLogin} = useContext(AuthContext)
   const navigate = useNavigate();
 
   const loc = useLocation()
@@ -35,6 +35,16 @@ const Login = () => {
     console.log(email, password);
   }
 
+  const handleGoogleLogin = () =>{
+    googleLogin()
+    .then((result) => {
+      console.log(result.user);
+      navigate(loc.pathname ? loc.state : '/')
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
   const handleFbLogin = () =>{
     facebookLogin()
     .then((result) => {
@@ -44,6 +54,7 @@ const Login = () => {
       console.error(err);
     });
   }
+
 
 
   return (
@@ -108,7 +119,9 @@ const Login = () => {
             <p className="font-medium flex-1">Continue with Facebook</p>
           </div>
           {/* Google */}
-          <div className="flex items-center w-full cursor-pointer text-center border pl-2 py-2 rounded-[55px]">
+          <div
+          onClick={handleGoogleLogin}
+           className="flex items-center w-full cursor-pointer text-center border pl-2 py-2 rounded-[55px]">
             <img className="w-9 h-9 " src={GoogleIcon} alt="facebook icon" />
             <p className="font-medium flex-1">Continue with Google</p>
           </div>

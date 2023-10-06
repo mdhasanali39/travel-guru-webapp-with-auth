@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import {
   FacebookAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -12,14 +13,22 @@ import auth from "../firbase/firbaseConfig";
 export const AuthContext = createContext(null);
 
 const fbProvider = new FacebookAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
 
 
+  // login with google 
+  const googleLogin = () =>{
+    setLoader(true)
+    return signInWithPopup(auth, googleProvider);
+  }
+
   // login with facebook 
   const facebookLogin = () =>{
+    setLoader(true)
     return signInWithPopup(auth, fbProvider)
   }
 
@@ -61,6 +70,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     loader,
     facebookLogin,
+    googleLogin,
   };
 
   return (
